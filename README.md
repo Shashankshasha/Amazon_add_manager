@@ -19,7 +19,8 @@ implemented here versus what's still pending.
 | SAFAR Ads SKILL.md | **Done** | `skills/safar-ads-manager/SKILL.md` |
 | Amazon Developer identity verification | **Failed, confirmed scoped to Appstore only** | Confirmed by direct test: the "SAFAR Ads Manager" security profile below was created successfully despite the failed verification. Parked indefinitely — resolving it is optional unless a future step proves otherwise. |
 | Login with Amazon security profile | **Done** | Created 15 Aug 2026 as "SAFAR Ads Manager." Client ID confirmed; Client Secret to be retrieved from Web Settings and stored in a password manager (never in this repo, never in chat). Redirect/return URL for OAuth still needs to be set once the backend has a real callback URL (Phase 2). |
-| Direct Advertiser API application | **Ready to submit** | `docs/02-direct-advertiser-application.md` — wording is ready to paste; the security profile it depends on now exists. |
+| Amazon Ads advertiser account | **Done** | "Grace One / Sponsored ads, India" registered 15 Aug 2026 under `graceragheshwari@gmail.com`, linked to the existing Grace One Seller Central account. Business details (legal name, address, GSTIN `05AXTPS7154F1ZY`) verified against the official GST REG-06 certificate before submission. |
+| Direct Advertiser API application | **Ready to submit** | `docs/02-direct-advertiser-application.md` — wording is ready to paste; both prerequisites (LwA security profile, Ads advertiser account) now exist. Locating the exact "API Applications" entry point in the console is in progress. |
 | Five SAFAR ASINs / GTINs | **Pending** | Outside this repo's scope — tracked in the plan's Phase 0. |
 | Live campaign writes | **Blocked** | Requires live ASINs + approved, authenticated API access. Not possible yet. |
 
@@ -62,15 +63,18 @@ tests/                     pytest suite for profit.py, safety.py, amazon_ads_cli
 ## What's next
 
 1. ~~Create the "SAFAR Ads Manager" Login with Amazon security profile~~ — **done**.
-2. **Manual, in-browser:** retrieve the Client Secret from the security
+2. ~~Register the "Grace One" Amazon Ads (Sponsored ads) advertiser account and link it to Seller Central~~ — **done**.
+3. **Manual, in-browser:** retrieve the Client Secret from the security
    profile's Web Settings tab and store it in a password manager (see
    `docs/01-security-profile-setup.md`). Never commit it, never paste it
    into chat.
-3. Submit the Direct Advertiser API application using
-   `docs/02-direct-advertiser-application.md` (wording ready to paste).
-4. In parallel, GTIN/ASIN and listing work (outside this repo) can
+4. Find the API Applications / Ads API access entry point in the
+   Advertising Console (likely under Settings) and submit the Direct
+   Advertiser application using `docs/02-direct-advertiser-application.md`
+   (wording ready to paste).
+5. In parallel, GTIN/ASIN and listing work (outside this repo) can
    proceed independently — see the plan's Phase 0 and Phase 14.
-5. After the Direct Advertiser application is approved and OAuth is
+6. After the Direct Advertiser application is approved and OAuth is
    complete, wire `AmazonAdsClient`'s live-mode HTTP calls against real
    Amazon Ads API responses (the dry-run interfaces are already the
    intended shape) and flip `SAFAR_ADS_DRY_RUN=false` only after a
