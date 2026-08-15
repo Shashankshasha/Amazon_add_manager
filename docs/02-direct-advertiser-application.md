@@ -100,17 +100,34 @@ manages its own SAFAR advertiser account.
       that isn't the designated secret field, and never into a support
       ticket or chat.
 
-## After submitting (per Amazon's docs)
+## Submitted — 15 Aug 2026
 
-- [ ] Complete the application form, click **Submit for review**.
-- [ ] A confirmation email arrives at the address used to log in
-      (`graceragheshwari@gmail.com`).
-- [ ] Review takes **up to 1 business day**. An email follows with the
-      application status either way — approved, or (if not) information
-      on how to resolve the issue.
-- [ ] **Read "Assign API access to your LwA application" before
+- [x] Application form completed and submitted for review, logged in as
+      `graceragheshwari@gmail.com`.
+- [x] Confirmation shown on-screen: *"Thank you, your Amazon Ads API
+      request has been successfully submitted. Expect a follow up email
+      in 72 hours regarding next steps."* (Amazon's own docs page said
+      "up to 1 business day" elsewhere — go with the on-screen figure,
+      72 hours, as the real expectation; ~mid-day 18 Aug 2026.)
+- [ ] Watch `graceragheshwari@gmail.com` for Amazon's decision email.
+- [ ] **Read "Assign API access to your LwA application" in full before
       clicking any link in that status email** — the LwA-to-permissions
       association it describes is permanent once set. Assign it to the
-      "SAFAR Ads Manager" profile specifically.
+      "SAFAR Ads Manager" profile specifically, not any other client if
+      more than one exists.
 - [ ] Only after assignment is confirmed do Phase 2 (OAuth) and populate
       `.env` from `.env.example`.
+
+## While waiting on the 72-hour review
+
+Good parallel work, none of it blocked by this pending application:
+
+- [ ] Retrieve the "SAFAR Ads Manager" Client Secret from Web Settings
+      and store it securely — see `docs/01-security-profile-setup.md`.
+      Needed the moment OAuth (Phase 2) becomes possible.
+- [ ] Invite `hello@graceone.in` as an Admin user via Seller Central →
+      User Permissions, so business-critical Amazon access isn't tied
+      to one person's personal Gmail long-term. Doesn't touch anything
+      already built; purely additive.
+- [ ] GTIN/ASIN and listing work (Phase 0) — see the plan's Phase 14
+      "Parallel Workstreams" table.
