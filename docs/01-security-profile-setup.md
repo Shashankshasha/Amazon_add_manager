@@ -11,8 +11,14 @@ each step if you want a second pair of eyes before submitting anything.
 
 ## Before you start
 
-- [x] Confirm which Amazon Developer account you're in (the one
-      registered with `hello@graceone.in`).
+- [x] Confirm which Amazon Developer account you're in. **Corrected,
+      15 Aug 2026:** this is `graceragheshwari@gmail.com` — the same
+      account used for Seller Central and the Ads advertiser
+      registration. `hello@graceone.in` is not a real Amazon login (see
+      `docs/02-direct-advertiser-application.md` for how this was
+      discovered); it was only ever entered as business-contact text in
+      form fields like the Security Profile Description below, never
+      used to sign in.
 - [x] **Confirmed, 15 Aug 2026:** the actual error banner reads *"Your
       identity verification has failed. You cannot upload apps. Please
       contact us under Appstore -> Appstore Identity Verification for

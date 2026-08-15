@@ -23,33 +23,37 @@ categories are offered there:
   that docs page) or the Amazon Ads API web page → "Request API
   Access" → choose **Direct Advertiser**.
 
-### Which Amazon account to log in with — corrected
+### Which Amazon account to log in with — corrected, again, 15 Aug 2026
 
-**Important correction to earlier guidance in this repo:** an earlier
-version of this doc said to log in as `graceragheshwari@gmail.com`
-(the Ads/Seller Central account) to submit this application. That was
-wrong. Amazon's own instructions are explicit:
+**There is only one real Amazon account in this entire setup:
+`graceragheshwari@gmail.com`.** This doc previously went back and forth
+on this and got it wrong twice, so here's the settled fact, confirmed
+by direct test:
 
-> You must log in with the same email address that was used to create
-> the Amazon Developer account in step 1.
+- `graceragheshwari@gmail.com` is a real Amazon login. It's the account
+  behind Seller Central, the Grace One Ads advertiser registration, and
+  — it turns out — the Developer Console session that created the
+  "SAFAR Ads Manager" LwA security profile too. One account, used
+  everywhere.
+- `hello@graceone.in` is **not** a real Amazon account. Attempting to
+  sign in with it fails with "We cannot find an account with that
+  e-mail address." It only ever appeared as *text typed into form
+  fields* — the security profile's business contact details, and the
+  suggested contact email below — never as an actual login. Keep using
+  it that way (a contact address on forms), never as a sign-in.
 
-That's **`hello@graceone.in`** — the Developer Console account that
-holds the "SAFAR Ads Manager" LwA security profile. If any other Amazon
-account is already logged into the browser, Amazon auto-redirects using
-*that* session — check the account shown top-right before applying;
-log out and back in as `hello@graceone.in` if it's wrong.
+So: Amazon's instruction to "log in with the same email used to create
+the Developer account" is satisfied by `graceragheshwari@gmail.com`,
+because that's the account that was actually authenticated when the
+security profile was created — `hello@graceone.in` was never a
+separate login to begin with. Sign in with
+`graceragheshwari@gmail.com` for this application.
 
-**Do not skip this.** Per the same docs page: *"Your LwA developer
-registration will be associated to your Amazon Ads API permissions in
-the next step of the process. This association cannot be changed once
-it is set."* Applying under the wrong account risks permanently tying
-API permissions to an account that doesn't hold the LwA client you
-need.
-
-`graceragheshwari@gmail.com` (Ads/Seller Central) comes back into play
-later — at OAuth time (Phase 2), when that account authorizes the
-"SAFAR Ads Manager" app to actually access its campaign data. That's a
-separate step from this application.
+**Still true and still important:** per Amazon's docs, *"Your LwA
+developer registration will be associated to your Amazon Ads API
+permissions in the next step of the process. This association cannot
+be changed once it is set."* — so get the account right before
+submitting, which is now confirmed as `graceragheshwari@gmail.com`.
 
 ## Application type
 
@@ -81,11 +85,14 @@ manages its own SAFAR advertiser account.
 
 ## Fields to have ready
 
-- [ ] Company/business name: **Grace One**
+- [ ] Company/business name: **Grace One** (or the legal name
+      `Grace Ragheshwari` if the field asks for the GST legal name
+      specifically — match whichever the field is actually asking for,
+      as with the Ads advertiser account registration).
 - [ ] Brand: **SAFAR**
 - [ ] Contact email: `hello@graceone.in` is fine as the *business*
-      contact address on the form even though you're logged in as
-      `graceragheshwari@gmail.com` — those don't have to match.
+      contact address typed into the form, even though you're logged in
+      as `graceragheshwari@gmail.com` — those don't have to match.
 - [ ] Marketplace(s): **Amazon.in (India)**
 - [ ] Ad product(s): **Sponsored Products**
 - [ ] LwA Client ID (from `docs/01-security-profile-setup.md`) — do
@@ -97,7 +104,7 @@ manages its own SAFAR advertiser account.
 
 - [ ] Complete the application form, click **Submit for review**.
 - [ ] A confirmation email arrives at the address used to log in
-      (`hello@graceone.in`).
+      (`graceragheshwari@gmail.com`).
 - [ ] Review takes **up to 1 business day**. An email follows with the
       application status either way — approved, or (if not) information
       on how to resolve the issue.

@@ -20,7 +20,7 @@ implemented here versus what's still pending.
 | Amazon Developer identity verification | **Failed, confirmed scoped to Appstore only** | Confirmed by direct test: the "SAFAR Ads Manager" security profile below was created successfully despite the failed verification. Parked indefinitely — resolving it is optional unless a future step proves otherwise. |
 | Login with Amazon security profile | **Done** | Created 15 Aug 2026 as "SAFAR Ads Manager." Client ID confirmed; Client Secret to be retrieved from Web Settings and stored in a password manager (never in this repo, never in chat). Redirect/return URL for OAuth still needs to be set once the backend has a real callback URL (Phase 2). |
 | Amazon Ads advertiser account | **Done** | "Grace One / Sponsored ads, India" registered 15 Aug 2026 under `graceragheshwari@gmail.com`, linked to the existing Grace One Seller Central account. Business details (legal name, address, GSTIN `05AXTPS7154F1ZY`) verified against the official GST REG-06 certificate before submission. |
-| Direct Advertiser API application | **Located — ready to submit** | Not in the Ads console at all; lives at Amazon's Advanced Tools Center docs site (Developer guides → Onboarding → 2. Apply for API access → Direct Advertiser link). **Must be submitted logged in as `hello@graceone.in`** (the Developer Console account), not the Ads/Seller Central account — corrects earlier wrong guidance in this repo. See `docs/02-direct-advertiser-application.md`. |
+| Direct Advertiser API application | **Located — ready to submit** | Not in the Ads console at all; lives at Amazon's Advanced Tools Center docs site (Developer guides → Onboarding → 2. Apply for API access → Direct Advertiser link). **Submit logged in as `graceragheshwari@gmail.com`** — confirmed (15 Aug 2026) as the only real Amazon account in this whole setup; `hello@graceone.in` is not an actual login (fails "We cannot find an account with that e-mail address"), only ever business-contact text in form fields. See `docs/02-direct-advertiser-application.md`. |
 | Five SAFAR ASINs / GTINs | **Pending** | Outside this repo's scope — tracked in the plan's Phase 0. |
 | Live campaign writes | **Blocked** | Requires live ASINs + approved, authenticated API access. Not possible yet. |
 
@@ -68,11 +68,11 @@ tests/                     pytest suite for profit.py, safety.py, amazon_ads_cli
    profile's Web Settings tab and store it in a password manager (see
    `docs/01-security-profile-setup.md`). Never commit it, never paste it
    into chat.
-4. **Manual, in-browser:** log in as `hello@graceone.in` (not the
-   Ads/Seller Central account) and submit the Direct Advertiser API
-   application at Amazon's Advanced Tools Center docs site — see
-   `docs/02-direct-advertiser-application.md` for the exact path and
-   why the account matters.
+4. **Manual, in-browser:** log in as `graceragheshwari@gmail.com` (the
+   only real Amazon account in this setup — `hello@graceone.in` is not
+   an actual login) and submit the Direct Advertiser API application at
+   Amazon's Advanced Tools Center docs site — see
+   `docs/02-direct-advertiser-application.md` for the exact path.
 5. Wait up to 1 business day for Amazon's decision email, then follow
    "Assign API access to your LwA application" carefully — that
    association is permanent once set.
