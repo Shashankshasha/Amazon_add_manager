@@ -11,19 +11,21 @@ each step if you want a second pair of eyes before submitting anything.
 
 ## Before you start
 
-- [ ] Confirm which Amazon Developer account you're in (the one
+- [x] Confirm which Amazon Developer account you're in (the one
       registered with `hello@graceone.in`).
-- [ ] **Update, per Amazon Developer Community guidance:** identity
-      verification is required specifically to *publish apps to the
-      Amazon Appstore* — that's the "you cannot upload apps" error you
-      saw. Other Developer Console features, including Login with
-      Amazon security profiles, are documented as usable without
-      completing it. LWA and the Ads API also live on a separate
-      program (advertising.amazon.com) from Appstore app submission, so
-      there's a reasonable chance this failure doesn't block Step 3 at
-      all. Treat "blocked" as a hypothesis to test, not a given — try
-      the steps below before assuming you need Developer Support.
-      Source: https://community.amazondeveloper.com/t/account-identity-verification-failed-you-cannot-upload-apps/12149
+- [x] **Confirmed, 15 Aug 2026:** the actual error banner reads *"Your
+      identity verification has failed. You cannot upload apps. Please
+      contact us under Appstore -> Appstore Identity Verification for
+      further assistance if required."* — scoped by name to Appstore
+      app publishing. It appears on the Appstore "App List" screen
+      specifically. Just below it, a separate green banner reads
+      *"Your account review is complete."* — the Developer account
+      itself passed review; only the Appstore app-upload sub-feature is
+      flagged. Login with Amazon lives in a different section of the
+      same console and is not shown as blocked anywhere. Proceed with
+      Step 3 below; there is no remaining reason to expect it's gated by
+      this error.
+      Background: https://community.amazondeveloper.com/t/account-identity-verification-failed-you-cannot-upload-apps/12149
 
 ## Create the security profile
 
@@ -74,17 +76,15 @@ each step if you want a second pair of eyes before submitting anything.
 ## After this step
 
 Report back with:
-1. Whether "Login with Amazon" was fully accessible or partially
-   blocked by the identity-verification issue.
-2. Confirmation the security profile was created (name is enough — not
+1. Confirmation the security profile was created (name is enough — not
    the Client ID/Secret).
-3. Any error messages Amazon showed, verbatim.
+2. Any error messages Amazon showed, verbatim, if you hit one.
 
-That tells us exactly where the verification failure does and doesn't
-block progress. If the security profile creates cleanly, identity
-verification most likely only matters for Appstore publishing and can
-stay parked indefinitely — resolving it is then optional, not a
-blocker for Phase 1. If Step 3 itself throws a verification error,
-that's new information (verification blocking more than Appstore
-uploads on this account) and is worth a Developer Support ticket at
-that point, not before.
+If the security profile creates cleanly (expected, per the confirmation
+above), identity verification only matters for Appstore publishing and
+can stay parked indefinitely — resolving it becomes optional, not a
+blocker for Phase 1. Move straight on to
+`docs/02-direct-advertiser-application.md`. If Step 3 itself throws a
+verification error, that would be new information (verification
+blocking more than Appstore uploads on this account) and worth a
+Developer Support ticket at that point, not before.

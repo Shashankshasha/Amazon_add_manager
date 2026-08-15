@@ -17,8 +17,8 @@ implemented here versus what's still pending.
 | Safety middleware (caps, kill switch, idempotency, audit log) | **Done, tested** | `src/safar_ads/safety.py` |
 | Amazon Ads API client | **Dry-run/mock only** | `src/safar_ads/amazon_ads_client.py` — real HTTP paths are scaffolded but unverified against live credentials; re-check against current Amazon Ads API docs before first live write. |
 | SAFAR Ads SKILL.md | **Done** | `skills/safar-ads-manager/SKILL.md` |
-| Amazon Developer identity verification | **Failed, likely scoped to Appstore only** | First attempt failed with "cannot upload apps." Amazon Developer Community guidance says this verification gates Appstore app publishing specifically, not every Developer Console feature — see `docs/01-security-profile-setup.md` for the source. Untested whether it blocks LWA/Ads API; don't assume either way until Step 3 is attempted. |
-| Login with Amazon security profile | **Not started — manual step, try now** | `docs/01-security-profile-setup.md` — worth attempting even with verification unresolved. |
+| Amazon Developer identity verification | **Failed, confirmed scoped to Appstore only** | Error banner explicitly names "Appstore -> Appstore Identity Verification"; a separate "Your account review is complete" banner confirms the Developer account itself is fine. Not a blocker for LWA/Ads API — parked indefinitely, resolving it is optional. See `docs/01-security-profile-setup.md`. |
+| Login with Amazon security profile | **Not started — manual step, proceed now** | `docs/01-security-profile-setup.md` — no known reason left to expect this is blocked. |
 | Direct Advertiser API application | **Not started** | `docs/02-direct-advertiser-application.md` (wording ready to paste, needs the security profile first) |
 | Five SAFAR ASINs / GTINs | **Pending** | Outside this repo's scope — tracked in the plan's Phase 0. |
 | Live campaign writes | **Blocked** | Requires live ASINs + approved, authenticated API access. Not possible yet. |
@@ -63,10 +63,8 @@ tests/                     pytest suite for profit.py, safety.py, amazon_ads_cli
 
 1. **Manual, in-browser:** work through
    `docs/01-security-profile-setup.md` (Login with Amazon / security
-   profile). Amazon Developer Community guidance suggests identity
-   verification only gates Appstore app publishing, so this is worth
-   attempting now rather than waiting on verification — report back
-   whether it goes through cleanly or hits its own verification error.
+   profile). Confirmed the identity-verification failure is scoped to
+   Appstore app publishing, not this feature — proceed directly.
 2. Once the security profile exists, submit the Direct Advertiser
    application using `docs/02-direct-advertiser-application.md`.
 3. In parallel, GTIN/ASIN and listing work (outside this repo) can
