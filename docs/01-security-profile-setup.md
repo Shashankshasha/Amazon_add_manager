@@ -29,29 +29,30 @@ each step if you want a second pair of eyes before submitting anything.
 
 ## Create the security profile
 
-- [ ] Navigate to **Login with Amazon** (bottom-left nav, per your
-      screenshot) → **Create a New Security Profile**.
-- [ ] Security Profile Name: `SAFAR Ads Manager` (or `Grace One Ads
-      Manager` if you prefer the parent-company name — pick one and stay
-      consistent with `config/campaigns.yaml` naming going forward).
-- [ ] Security Profile Description: something like — *"Internal
-      application for Grace One to programmatically manage SAFAR's own
-      Amazon Sponsored Products advertising: read performance, create
-      and optimise campaigns, enforce spend guardrails."*
-- [ ] Consent Privacy Notice URL: use a real, business-controlled URL
-      (can be a simple hosted privacy note if Grace One doesn't have a
-      full site yet — Amazon requires *something* reachable here).
-- [ ] Business contact details: use `hello@graceone.in` and Grace One's
-      real business info, not a personal placeholder.
+- [x] Navigate to **Login with Amazon** → **Create a New Security
+      Profile**.
+- [x] Security Profile Name: `SAFAR Ads Manager`.
+- [x] Security Profile Description: *"Internal application for Grace
+      One to programmatically manage SAFAR's own Amazon Sponsored
+      Products advertising: read performance, create and optimise
+      campaigns, enforce spend guardrails."*
+- [x] Consent Privacy Notice URL: `https://www.graceone.in/privacy-policy.html`
+      (Grace One's real, dated privacy policy page).
+- [x] **Confirmed, 15 Aug 2026:** profile created successfully —
+      "Login with Amazon successfully enabled for Security Profile,"
+      listed under Login with Amazon Configurations with a visible
+      Client ID. This is the direct proof that the identity-verification
+      failure does not block LWA/Ads API onboarding.
 
 ## Capture credentials securely
 
-- [ ] Once created, open the security profile and go to **Web
-      Settings** / **Credentials** tab.
-- [ ] Copy the **Client ID** and **Client Secret**.
-- [ ] Store them in a password manager or secret vault immediately —
-      **do not** paste them into chat, screenshots, SKILL.md, or any
-      file that gets committed to this repo. `.env` is git-ignored for
+- [ ] Open the security profile (gear icon under "Manage") and go to
+      **Web Settings** / **Credentials** tab.
+- [ ] Copy the **Client Secret** (Client ID is already visible on the
+      configurations list and isn't sensitive the same way).
+- [ ] Store it in a password manager or secret vault immediately —
+      **do not** paste it into chat, screenshots, SKILL.md, or any file
+      that gets committed to this repo. `.env` is git-ignored for
       exactly this reason (see `.env.example`).
 - [ ] If you ever paste a secret into a chat window by accident, rotate
       it in the Developer Console immediately — treat it as compromised.
@@ -75,16 +76,13 @@ each step if you want a second pair of eyes before submitting anything.
 
 ## After this step
 
-Report back with:
-1. Confirmation the security profile was created (name is enough — not
-   the Client ID/Secret).
-2. Any error messages Amazon showed, verbatim, if you hit one.
+Security profile creation is done. Remaining before moving on:
+1. Retrieve and securely store the Client Secret (see "Capture
+   credentials securely" above).
+2. Then proceed to `docs/02-direct-advertiser-application.md` and
+   submit the Direct Advertiser API application — the security profile
+   it depends on now exists.
 
-If the security profile creates cleanly (expected, per the confirmation
-above), identity verification only matters for Appstore publishing and
-can stay parked indefinitely — resolving it becomes optional, not a
-blocker for Phase 1. Move straight on to
-`docs/02-direct-advertiser-application.md`. If Step 3 itself throws a
-verification error, that would be new information (verification
-blocking more than Appstore uploads on this account) and worth a
-Developer Support ticket at that point, not before.
+Identity verification is confirmed to only matter for Appstore
+publishing and can stay parked indefinitely — resolving it is optional,
+not a blocker for anything in this plan.
