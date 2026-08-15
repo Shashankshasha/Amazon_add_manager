@@ -1,56 +1,55 @@
 # Direct Advertiser API application wording
 
 Use this once the "SAFAR Ads Manager" LwA security profile exists
-(`docs/01-security-profile-setup.md`). Submit in the Amazon Ads Partner
-Network / API Applications area, applying as a **Direct Advertiser** —
-Grace One is managing its own SAFAR advertising, not offering an agency
-service to other advertisers.
+(`docs/01-security-profile-setup.md`).
 
-## Status, 15 Aug 2026: no self-service application UI found
+## Confirmed process, 15 Aug 2026 (from Amazon's current Advanced Tools
+## Center docs — Onboarding → 2. Apply for API access)
 
-Exhaustively checked the "Grace One" Ads console (Administration →
-Account access and settings → Third-party applications; Tools &
-resources; the full "All tools" mega-menu) — there is no "Request API
-access," "API Applications," or "Partner Network" entry anywhere in the
-console for a direct advertiser. "Partner Directory" is for *hiring* an
-agency partner, not applying as one. `advertising.amazon.com/API`
-(the plan's own reference link) 404s.
+The application form is **not** in the regular Ads console (confirmed
+by exhaustively checking Administration, Tools & resources, and the
+full "All tools" mega-menu — nothing there). It lives in Amazon's
+developer documentation site instead, under Advanced Tools Center →
+Developer guides → Onboarding → "2. Apply for API access." Two
+categories are offered there:
 
-Two live threads, not yet resolved:
-1. Asked Amazon Ads support in-console (via the "?" help/contact
-   option) how to request API access as a direct advertiser with an
-   existing Sponsored Ads account — awaiting their answer.
-2. Working theory: Amazon may have moved to **self-service Ads API
-   access** for direct advertisers with an active account, i.e. no
-   separate approval step exists anymore — LwA Client ID/Secret +
-   completing OAuth (Phase 2) against the Profiles endpoint may just
-   work without a prior "application."
+- **Partner** — agencies/software providers managing *other*
+  advertisers' accounts, via the Amazon Ads Partner Network. **Not us**
+  — this is the "Partner Network / API Applications" language the
+  original implementation plan used, and it does not apply to a Direct
+  Advertiser managing its own account.
+- **Direct Advertiser** — Grace One's actual category. Reach it via
+  either "Apply for API access as a Direct Advertiser" (direct link on
+  that docs page) or the Amazon Ads API web page → "Request API
+  Access" → choose **Direct Advertiser**.
 
-The wording below stays ready in case support confirms there is still
-a form (possibly submitted via a support ticket rather than
-self-service UI) — don't discard it while thread 1 is open.
+### Which Amazon account to log in with — corrected
 
-## Which Amazon account to log in with
+**Important correction to earlier guidance in this repo:** an earlier
+version of this doc said to log in as `graceragheshwari@gmail.com`
+(the Ads/Seller Central account) to submit this application. That was
+wrong. Amazon's own instructions are explicit:
 
-**Confirmed, 15 Aug 2026:** two separate Amazon accounts are involved,
-and they stay separate on purpose:
+> You must log in with the same email address that was used to create
+> the Amazon Developer account in step 1.
 
-- `hello@graceone.in` — Developer Console account. Already used to
-  create the "SAFAR Ads Manager" LwA security profile
-  (`docs/01-security-profile-setup.md`). Not needed again until you
-  manage that security profile's settings.
-- `graceragheshwari@gmail.com` — Advertising Console / Seller Central /
-  Campaign Manager account. This is the account that actually owns the
-  SAFAR advertiser profile and campaign data. **Log into
-  advertising.amazon.com with this account** to submit the application
-  below — the request needs to be tied to the account whose data the
-  API will access.
+That's **`hello@graceone.in`** — the Developer Console account that
+holds the "SAFAR Ads Manager" LwA security profile. If any other Amazon
+account is already logged into the browser, Amazon auto-redirects using
+*that* session — check the account shown top-right before applying;
+log out and back in as `hello@graceone.in` if it's wrong.
 
-Later (Phase 5.4 → 6.1), after Amazon approves the application, you'll
-log back in as `graceragheshwari@gmail.com` to authorize the "SAFAR Ads
-Manager" app (identified by its LwA Client ID from the other account)
-to access this advertiser's campaigns via the OAuth consent screen.
-That's the step that actually links the two accounts together.
+**Do not skip this.** Per the same docs page: *"Your LwA developer
+registration will be associated to your Amazon Ads API permissions in
+the next step of the process. This association cannot be changed once
+it is set."* Applying under the wrong account risks permanently tying
+API permissions to an account that doesn't hold the LwA client you
+need.
+
+`graceragheshwari@gmail.com` (Ads/Seller Central) comes back into play
+later — at OAuth time (Phase 2), when that account authorizes the
+"SAFAR Ads Manager" app to actually access its campaign data. That's a
+separate step from this application.
 
 ## Application type
 
@@ -94,13 +93,17 @@ manages its own SAFAR advertiser account.
       that isn't the designated secret field, and never into a support
       ticket or chat.
 
-## After submitting
+## After submitting (per Amazon's docs)
 
-- [ ] Note the submission date — Amazon's approval timeline varies;
-      don't resubmit duplicate applications while one is pending.
-- [ ] Once approved, follow the "assign API access to the LwA
-      application" flow (Phase 5.4 of the plan) and confirm you're
-      assigning to the correct "SAFAR Ads Manager" profile, not a
-      different one if you have multiple.
+- [ ] Complete the application form, click **Submit for review**.
+- [ ] A confirmation email arrives at the address used to log in
+      (`hello@graceone.in`).
+- [ ] Review takes **up to 1 business day**. An email follows with the
+      application status either way — approved, or (if not) information
+      on how to resolve the issue.
+- [ ] **Read "Assign API access to your LwA application" before
+      clicking any link in that status email** — the LwA-to-permissions
+      association it describes is permanent once set. Assign it to the
+      "SAFAR Ads Manager" profile specifically.
 - [ ] Only after assignment is confirmed do Phase 2 (OAuth) and populate
       `.env` from `.env.example`.
