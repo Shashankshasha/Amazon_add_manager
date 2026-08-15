@@ -6,6 +6,30 @@ Network / API Applications area, applying as a **Direct Advertiser** —
 Grace One is managing its own SAFAR advertising, not offering an agency
 service to other advertisers.
 
+## Status, 15 Aug 2026: no self-service application UI found
+
+Exhaustively checked the "Grace One" Ads console (Administration →
+Account access and settings → Third-party applications; Tools &
+resources; the full "All tools" mega-menu) — there is no "Request API
+access," "API Applications," or "Partner Network" entry anywhere in the
+console for a direct advertiser. "Partner Directory" is for *hiring* an
+agency partner, not applying as one. `advertising.amazon.com/API`
+(the plan's own reference link) 404s.
+
+Two live threads, not yet resolved:
+1. Asked Amazon Ads support in-console (via the "?" help/contact
+   option) how to request API access as a direct advertiser with an
+   existing Sponsored Ads account — awaiting their answer.
+2. Working theory: Amazon may have moved to **self-service Ads API
+   access** for direct advertisers with an active account, i.e. no
+   separate approval step exists anymore — LwA Client ID/Secret +
+   completing OAuth (Phase 2) against the Profiles endpoint may just
+   work without a prior "application."
+
+The wording below stays ready in case support confirms there is still
+a form (possibly submitted via a support ticket rather than
+self-service UI) — don't discard it while thread 1 is open.
+
 ## Which Amazon account to log in with
 
 **Confirmed, 15 Aug 2026:** two separate Amazon accounts are involved,
