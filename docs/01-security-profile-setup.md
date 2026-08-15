@@ -13,12 +13,17 @@ each step if you want a second pair of eyes before submitting anything.
 
 - [ ] Confirm which Amazon Developer account you're in (the one
       registered with `hello@graceone.in`).
-- [ ] Do **not** treat this step as separate from identity verification —
-      if the console still shows "Account Identity Verification Failed"
-      in the area you need, note exactly which sections are blocked vs.
-      still accessible. Amazon sometimes restricts only *some* developer
-      capabilities (e.g. app submission) while still allowing security
-      profile creation. Confirm rather than assume.
+- [ ] **Update, per Amazon Developer Community guidance:** identity
+      verification is required specifically to *publish apps to the
+      Amazon Appstore* — that's the "you cannot upload apps" error you
+      saw. Other Developer Console features, including Login with
+      Amazon security profiles, are documented as usable without
+      completing it. LWA and the Ads API also live on a separate
+      program (advertising.amazon.com) from Appstore app submission, so
+      there's a reasonable chance this failure doesn't block Step 3 at
+      all. Treat "blocked" as a hypothesis to test, not a given — try
+      the steps below before assuming you need Developer Support.
+      Source: https://community.amazondeveloper.com/t/account-identity-verification-failed-you-cannot-upload-apps/12149
 
 ## Create the security profile
 
@@ -76,5 +81,10 @@ Report back with:
 3. Any error messages Amazon showed, verbatim.
 
 That tells us exactly where the verification failure does and doesn't
-block progress, and whether Phase 1 can continue or needs Developer
-Support first.
+block progress. If the security profile creates cleanly, identity
+verification most likely only matters for Appstore publishing and can
+stay parked indefinitely — resolving it is then optional, not a
+blocker for Phase 1. If Step 3 itself throws a verification error,
+that's new information (verification blocking more than Appstore
+uploads on this account) and is worth a Developer Support ticket at
+that point, not before.
