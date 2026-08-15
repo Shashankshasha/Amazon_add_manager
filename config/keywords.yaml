@@ -1,0 +1,32 @@
+# Seed keyword themes for SAFAR-IN-SP-MANUAL-RESEARCH-LAUNCH (Phase 9.2).
+# These are STARTING points for testing, not a final list - the plan is
+# explicit that the final keyword list should be data-led, driven by
+# search-term harvesting once real performance data exists.
+
+themes:
+  core_category:
+    - "car perfume"
+    - "car air freshener"
+    - "car freshener"
+    - "car fragrance"
+
+  format_use:
+    - "hanging car perfume"
+    - "AC vent car perfume"
+    - "vent clip car freshener"
+    - "2 in 1 car freshener"
+
+  value_quality:
+    - "premium car perfume"
+    - "luxury car fragrance"
+    - "long lasting car freshener"
+
+  size:
+    - "10 ml car perfume"
+
+  fragrance_specific:
+    - "musk car perfume"
+    - "sandalwood car perfume"
+    - "lavender car freshener"
+    - "vanilla car perfume"
+    - "jasmine car perfume"

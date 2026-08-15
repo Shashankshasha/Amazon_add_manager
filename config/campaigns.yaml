@@ -1,0 +1,67 @@
+# SAFAR launch campaign structure (Phase 5 / Phase 9 of the implementation plan).
+#
+# This file is the single source of truth for what `safar_ads.cli dry-run`
+# will plan and, later, what create_campaign() will actually build. Total
+# daily_budget_inr across all campaigns MUST NOT exceed
+# guardrails.max_total_daily_budget_inr in business_constants.yaml - the
+# dry-run CLI and the safety middleware both check this on every load.
+
+marketplace: "Amazon.in"
+ad_product: "SPONSORED_PRODUCTS"
+
+naming_convention: "SAFAR-IN-SP-<ROLE>-<STAGE>"
+# ROLE  = AUTO-DISCOVERY | MANUAL-RESEARCH | EXACT-WINNERS
+# STAGE = LAUNCH | SCALE (bump when the owner approves scaling, Phase 8)
+
+campaigns:
+  - name: "SAFAR-IN-SP-AUTO-DISCOVERY-LAUNCH"
+    role: "auto_discovery"
+    targeting_type: "auto"
+    daily_budget_inr: 150
+    state: "paused"          # created paused; owner enables in a controlled window (Phase 7)
+    purpose: >
+      Automatic targeting to discover relevant customer searches and
+      product contexts across all five fragrances.
+    ad_groups:
+      - name: "SAFAR-IN-SP-AUTO-DISCOVERY-LAUNCH-AG1"
+        default_bid_inr: 12
+        targets:
+          - type: "auto"
+            expression: "close-match"
+          - type: "auto"
+            expression: "loose-match"
+          - type: "auto"
+            expression: "substitutes"
+          - type: "auto"
+            expression: "complements"
+
+  - name: "SAFAR-IN-SP-MANUAL-RESEARCH-LAUNCH"
+    role: "manual_research"
+    targeting_type: "manual"
+    daily_budget_inr: 150
+    state: "paused"
+    purpose: >
+      High-intent manual keyword testing using carefully selected
+      phrase/exact targets, seeded from config/keywords.yaml.
+    ad_groups:
+      - name: "SAFAR-IN-SP-MANUAL-RESEARCH-LAUNCH-AG1"
+        default_bid_inr: 15
+        match_types: ["phrase", "exact"]
+        seed_keywords_ref: "config/keywords.yaml"
+
+  - name: "SAFAR-IN-SP-EXACT-WINNERS-LAUNCH"
+    role: "exact_winners"
+    targeting_type: "manual"
+    daily_budget_inr: 100
+    state: "paused"
+    purpose: >
+      Tightly controlled exact targeting for search terms proven
+      profitable in the discovery/research campaigns. Starts empty and
+      receives winners via the search-term harvesting rule (Phase 6.2).
+    ad_groups:
+      - name: "SAFAR-IN-SP-EXACT-WINNERS-LAUNCH-AG1"
+        default_bid_inr: 18
+        match_types: ["exact"]
+        seed_keywords: []       # populated only by harvested winners, not at creation
+
+total_daily_budget_check_inr: 400   # 150 + 150 + 100 - must equal the guardrail cap

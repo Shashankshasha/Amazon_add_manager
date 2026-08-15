@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Local secrets and generated state - never commit these
+.env
+data/audit_log.jsonl
+data/idempotency_keys.json
+*.log

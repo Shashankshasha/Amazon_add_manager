@@ -1,0 +1,55 @@
+# SAFAR business constants and hard financial guardrails.
+#
+# These are the ONLY numbers the agent is allowed to reason about. The
+# safety middleware (src/safar_ads/safety.py) enforces the caps below in
+# code - the agent cannot override them by asking nicely in a prompt.
+#
+# Every value here is a WORKING assumption from the implementation plan
+# (v1.0, 15 August 2026) and is marked accordingly. Replace "working"
+# values with audited ones before launch; see docs/04-financial-guardrails.md.
+
+product:
+  brand: "SAFAR"
+  parent_company: "Grace One"
+  format: "10 ml dual-use car air freshener (hang + AC vent clip)"
+  fragrances:
+    - Musk
+    - Lavender
+    - Sandalwood
+    - Vanilla
+    - Jasmine
+  longevity_claim: "up to 45 days"   # NEVER use "60 days" anywhere - listings, ads, packaging
+
+economics:
+  selling_price_inr: 299            # working launch price - validate against Amazon fee preview
+  physical_packed_cost_inr: 75      # working conservative cost (~65 product + ~10 dispatch packaging)
+  profit_floor_inr: 70              # target minimum net contribution per completed unit
+  target_ad_cost_per_order_min_inr: 60
+  target_ad_cost_per_order_max_inr: 90
+  # Traffic-light thresholds used by the agent's optimisation logic (Phase 6.1)
+  traffic_light:
+    excellent_below_inr: 60
+    target_range_inr: [60, 90]
+    above_preferred_inr: [90, 110]
+    wasteful_above_inr: 110
+
+guardrails:
+  # Hard caps - enforced by src/safar_ads/safety.py, not by the agent's prompt.
+  max_total_daily_budget_inr: 400        # sum across ALL active campaigns
+  max_monthly_ad_spend_inr: 12000        # derived (400 * 30); owner should confirm explicitly
+  max_single_bid_change_pct: 15          # per optimisation cycle, without owner approval
+  max_campaign_budget_change_pct: 15     # per optimisation cycle, without owner approval
+  # Actions the agent is never permitted to take, regardless of confidence.
+  prohibited_actions:
+    - change_product_price
+    - change_payment_or_bank_details
+    - change_tax_settings
+    - change_account_ownership
+    - change_developer_credentials
+    - exceed_max_total_daily_budget
+    - bypass_kill_switch
+
+permission_level:
+  # 0 = read-only, 1 = controlled writes, 2 = semi-autonomous, 3 = broad autonomy.
+  # Start at 0. Only the owner raises this value; the agent never raises it itself.
+  current: 0
