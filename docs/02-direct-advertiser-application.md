@@ -109,14 +109,47 @@ manages its own SAFAR advertiser account.
       in 72 hours regarding next steps."* (Amazon's own docs page said
       "up to 1 business day" elsewhere — go with the on-screen figure,
       72 hours, as the real expectation; ~mid-day 18 Aug 2026.)
-- [ ] Watch `graceragheshwari@gmail.com` for Amazon's decision email.
-- [ ] **Read "Assign API access to your LwA application" in full before
-      clicking any link in that status email** — the LwA-to-permissions
-      association it describes is permanent once set. Assign it to the
-      "SAFAR Ads Manager" profile specifically, not any other client if
-      more than one exists.
-- [ ] Only after assignment is confirmed do Phase 2 (OAuth) and populate
-      `.env` from `.env.example`.
+
+## Approved — 18 Aug 2026
+
+Decision email arrived within the promised 72-hour window. Full text:
+
+> Congratulations! Your request to use the Amazon Ads API has been
+> approved. To complete the onboarding process, please follow these
+> steps:
+>
+> **Set up your Login with Amazon client application:** it's essential
+> to log out of all personal Amazon user accounts before selecting the
+> onboarding link. Failure to do so will invalidate the onboarding
+> link, requiring a reset by Ads API support. Use the onboarding link
+> to set up your LwA client application. To access this link, you must
+> log in with the Amazon account you used to apply for the Amazon Ads
+> API. If you don't already have an LwA client application, you can
+> create one.
+>
+> **Create an authorization grant:** review the onboarding guide to
+> create an authorization grant and receive an access token to start
+> calling the Amazon Ads API.
+
+Two onboarding steps to complete, in order:
+
+- [ ] **Step 1 (in progress):** log out of every Amazon session in the
+      browser first (skipping this invalidates the link per Amazon's
+      own warning). Open the onboarding link from the actual approval
+      email. Sign in as `graceragheshwari@gmail.com` — the account the
+      application was submitted under. On the page that follows,
+      **select the existing "SAFAR Ads Manager" LwA client — do not
+      create a new one**, even though the email's wording makes
+      creating one sound like a normal option. This is the
+      LwA-to-Ads-API-permissions association Amazon's docs warned is
+      **permanent once set** — confirm the exact screen before clicking
+      through anything final.
+- [ ] **Step 2:** follow Amazon's onboarding guide to create an
+      authorization grant and receive an access token (this is Phase 2
+      — OAuth — of the implementation plan). Populate `.env` from
+      `.env.example` once real values exist. Retrieve and securely
+      store the Client Secret first if not already done (see
+      `docs/01-security-profile-setup.md`).
 
 ## While waiting on the 72-hour review
 
